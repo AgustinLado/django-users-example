@@ -1,0 +1,12 @@
+*.py[cod]
+.directory
+.hg
+.idea
+.project
+.pydevproject
+
+*.sqlite3
+logs
+media
+collected_static/*
+local_settings.py
