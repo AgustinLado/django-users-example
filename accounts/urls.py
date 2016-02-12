@@ -10,4 +10,7 @@ urlpatterns = [
         'template_name': 'accounts/change_password.html',
         'post_change_redirect': '/',
     }, name='change-password'),
+
+    url(r'^profile/', views.UserDetail.as_view(), name='user-detail'),
+    url(r'^user/edit/', views.UserEdit.as_view(), name='user-update'),
 ]

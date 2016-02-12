@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 
+{% load i18n %}
 {% load static from staticfiles %}
 
 {# Load django-bootstrap3 #}
@@ -7,13 +8,13 @@
 {% bootstrap_css %}
 
 {% block content %}
-    <h1>Change password</h1>
+    <h1>Edit account details</h1>
 
-    <form action="" method="post" class="form">
+    <form action="" method="post" class="form" enctype="multipart/form-data">
         {% csrf_token %}
         {% bootstrap_form form %}
         {% buttons %}
-            <button class="btn btn-lg btn-primary btn-block" type="submit">
+            <button type="submit" class="btn btn-primary">
                 Save
             </button>
         {% endbuttons %}

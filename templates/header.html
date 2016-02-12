@@ -41,6 +41,18 @@
                         </a>
                         <ul class="dropdown-menu" role="menu">
                             <li>
+                                <a href="{% url 'user-detail' %}">
+                                    <i class="fa fa-male fa-fw"></i>
+                                    Profile
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'user-update' %}">
+                                    <i class="fa fa-user-md fa-fw"></i>
+                                    Edit account details
+                                </a>
+                            </li>
+                            <li>
                                 <a href="{% url 'change-password' %}">
                                     <i class="fa fa-user-secret fa-fw"></i>
                                     Change password
