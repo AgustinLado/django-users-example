@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% load static from staticfiles %}
+
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'accounts/signin.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        {% comment %}
+            This form is written by hand as an example.
+            Future templates will use django-bootstrap3.
+        {% endcomment %}
+
+        <form action="{% url 'login' %}" method="post"
+              class="form-signin x-center">
+            {% csrf_token %}
+            <h2>Please sign in</h2>
+
+            {% if form.errors %}
+                <div class="alert alert-danger alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span></button>
+                    {% for error in form.non_field_errors %}
+                        {{ error }}
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            <div class="form-group{% if form.errors %} has-error{% endif %}">
+                <label for="id_username" class="control-label">Username</label>
+                <input id="id_username" maxlength="254" name="username" type="text"
+                       class="form-control input-lg" placeholder="User name" required autofocus>
+            </div>
+            <div class="form-group{% if form.errors %} has-error{% endif %}">
+                <label for="id_password" class="control-label">Password</label>
+                <input id="id_password" name="password" type="password"
+                       class="form-control input-lg" placeholder="Password" required>
+            </div>
+
+            <button class="btn btn-lg btn-primary btn-block top-buffer-sm" type="submit">
+                Sign in
+            </button>
+        </form>
+    </div>
+{% endblock %}

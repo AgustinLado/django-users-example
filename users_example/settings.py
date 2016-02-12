@@ -37,9 +37,13 @@ DEFAULT_APPS = [
     'django.contrib.staticfiles',
 ]
 
-THIRD_PARTY_APPS = []
+THIRD_PARTY_APPS = [
+    'bootstrap3',
+]
 
-LOCAL_APPS = []
+LOCAL_APPS = [
+    'accounts',
+]
 
 INSTALLED_APPS = DEFAULT_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
@@ -102,6 +106,13 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
+# Auth
+# https://docs.djangoproject.com/en/1.9/ref/settings/#auth
+# These are actually the default settings, but I'd like them to be explicit
+LOGIN_URL = '/accounts/login/'
+LOGOUT_URL = '/accounts/logout/'
+LOGIN_REDIRECT_URL = '/'
+
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
 AUTH_PASSWORD_VALIDATORS = [
@@ -118,3 +129,10 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+
+# Import the local settings
+try:
+    from local_settings import *
+except ImportError as e:
+    pass
