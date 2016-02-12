@@ -1,0 +1,21 @@
+.top-buffer {
+    margin-top: 20px;
+}
+
+.top-buffer-sm {
+    margin-top: 10px;
+}
+
+.collapse.navbar-collapse {
+    margin-top: 7.5px; /* Bit of a hack... */
+}
+
+/* Logo stuff */
+
+.navbar-brand {
+    height: 100%;
+}
+
+#logo img {
+    max-height: 33px;
+}

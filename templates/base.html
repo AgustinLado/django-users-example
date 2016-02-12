@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static from staticfiles %}
+<head>
+    <title>Users Example</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css"
+          href="{% static 'plugins/bootstrap-3.3.6-dist/css/bootstrap.css' %}">
+    <link rel="stylesheet" type="text/css"
+          href="{% static 'plugins/font-awesome-4.5.0/css/font-awesome.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+    {% block css %}{% endblock %}
+</head>
+
+<body>
+<!-- Important Javascript loading -->
+<script type="text/javascript"
+        src="{% static 'plugins/jquery-2.2.0/jquery-2.2.0.js' %}"></script>
+<script type="text/javascript"
+        src="{% static 'plugins/bootstrap-3.3.6-dist/js/bootstrap.js' %}"></script>
+{% block important_javascript %}{% endblock %}
+
+
+<div id="header">
+    {% include 'header.html' %}
+</div>
+
+<div id="content" class="container">
+    {% block content %}{% endblock %}
+</div>
+
+<div id="footer" class="container">
+    <hr>
+    {% include 'footer.html' %}
+</div>
+
+
+<!-- Javascript loading -->
+{% block javascript %}{% endblock %}
+
+</body>
+</html>
