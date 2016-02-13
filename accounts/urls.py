@@ -11,6 +11,8 @@ urlpatterns = [
         'post_change_redirect': '/',
     }, name='change-password'),
 
-    url(r'^profile/', views.UserDetail.as_view(), name='user-detail'),
+    url(r'^register/', views.RegisterView.as_view(), name='register'),
+
+    url(r'^profile/', views.UserDetail.as_view(), name='user-profile'),
     url(r'^user/edit/', views.UserEdit.as_view(), name='user-update'),
 ]

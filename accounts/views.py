@@ -1,6 +1,8 @@
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.contrib.auth.views import login as django_login
-from django.core.urlresolvers import reverse
+from django.core.urlresolvers import reverse_lazy
 from django.http import HttpResponseRedirect
 from django.views import generic
 
@@ -14,23 +16,27 @@ def login(request, *args, **kwargs):
     return django_login(request, *args, **kwargs)
 
 
-class UserDetail(generic.DetailView):
+class RegisterView(generic.CreateView):
+    template_name = 'accounts/registration_form.html'
+    form_class = UserCreationForm
+    success_url = reverse_lazy('user-profile')
+
+
+class UserDetail(LoginRequiredMixin, generic.DetailView):
     model = User
-    template_name = 'accounts/user_detail.html'
+    template_name = 'accounts/user_profile.html'
 
     def get_object(self, queryset=None):
         """ Overriding get_object allows for calling the view without a PK. """
         return self.request.user
 
 
-class UserEdit(generic.UpdateView):
+class UserEdit(LoginRequiredMixin, generic.UpdateView):
     model = User
-    form_class = forms.UserAccountForm
+    form_class = forms.UserProfileForm
     template_name = 'accounts/user_update.html'
+    success_url = reverse_lazy('user-profile')
 
     def get_object(self, queryset=None):
         """ Overriding get_object allows for calling the view without a PK. """
         return self.request.user
-
-    def get_success_url(self):
-        return reverse('home')

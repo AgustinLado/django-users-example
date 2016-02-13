@@ -39,6 +39,7 @@ DEFAULT_APPS = [
 
 THIRD_PARTY_APPS = [
     'bootstrap3',
+    'django_countries',
 ]
 
 LOCAL_APPS = [

@@ -41,7 +41,7 @@
                         </a>
                         <ul class="dropdown-menu" role="menu">
                             <li>
-                                <a href="{% url 'user-detail' %}">
+                                <a href="{% url 'user-profile' %}">
                                     <i class="fa fa-male fa-fw"></i>
                                     Profile
                                 </a>
@@ -79,6 +79,12 @@
                         </ul>
                     </li>
                 {% else %}
+                    <li>
+                        <a href="{% url 'register' %}">
+                            <i class="fa fa-user-plus fa-fw"></i>
+                            Register
+                        </a>
+                    </li>
                     <li>
                         <a href="{% url 'login' %}">
                             <i class="fa fa-sign-in fa-fw"></i>
