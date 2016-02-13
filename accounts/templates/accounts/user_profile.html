@@ -1,14 +1,5 @@
 {% extends 'base.html' %}
 
-{% load static from staticfiles %}
-
-{# Load django-bootstrap3 #}
-{% load bootstrap3 %}
-{% bootstrap_css %}
-
-{# Custom templatetags #}
-{% load gravatar %}
-
 {% block css %}
     <style>
         .table > tbody > tr:first-child > td {
@@ -29,64 +20,7 @@
 
     <div class="row">
         <div class="col-md-8">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h3 class="panel-title">
-                        {{ user.get_full_name }}
-                    </h3>
-                </div>
-                <div class="panel-body">
-                    <div class="row">
-                        <div class="col-md-3" align="center">
-                            <img src="{{ user.email|gravatar_url:'200' }}"
-                                 class="img-circle img-responsive" alt="User avatar">
-                        </div>
-
-                        <div class="col-md-9">
-                            <table class="table table-responsive table-hover">
-                                <tbody>
-                                <tr>
-                                    <td>E-mail</td>
-                                    <td>{{ user.email }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Phone</td>
-                                    <td>{{ user.profile.phone|default:'' }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Country</td>
-                                    <td>
-                                        {% if user.profile.country %}
-                                            <img src="{% static user.profile.country.flag %}">
-                                            <small>{{ user.profile.country.name }}</small>
-                                        {% endif %}
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <div class="panel-footer">
-                    {% if user.email %}
-                        <a href="mailto:{{ user.email }}" type="button" class="btn btn-sm btn-primary"
-                           data-original-title="Send e-mail" data-toggle="tooltip">
-                            <i class="glyphicon glyphicon-envelope"></i>
-                        </a>
-                    {% endif %}
-                    <span class="pull-right">
-                        <a href="{% url 'user-update' %}" type="button" class="btn btn-sm btn-warning"
-                           data-original-title="Edit this user" data-toggle="tooltip">
-                            <i class="glyphicon glyphicon-edit"></i>
-                        </a>
-                        <a type="button" class="btn btn-sm btn-danger"
-                           data-original-title="Remove this user" data-toggle="tooltip">
-                            <i class="glyphicon glyphicon-remove"></i>
-                        </a>
-                    </span>
-                <div class="clearfix"></div>
-                </div>
-            </div>
+            {% include 'accounts/user_profile__panel.html' %}
         </div>
     </div>
 

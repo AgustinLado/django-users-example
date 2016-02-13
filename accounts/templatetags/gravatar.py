@@ -1,15 +1,14 @@
-import hashlib
-
 from django import template
 
-register = template.Library()
+from accounts.models import get_gravatar_url
 
-GRAVATAR_URL = 'http://www.gravatar.com/avatar/{hash}'
+register = template.Library()
 
 
 @register.filter
 def gravatar_url(email, size=None):
-    url = GRAVATAR_URL.format(hash=hashlib.md5(email.lower()).hexdigest())
-    if size:
-        url += '?s={0}'.format(size)
-    return url
+    """
+    Using a template filter allows the passing of the size parameter
+    in the template language.
+    """
+    return get_gravatar_url(email, size)

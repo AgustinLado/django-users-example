@@ -13,6 +13,7 @@ urlpatterns = [
 
     url(r'^register/', views.RegisterView.as_view(), name='register'),
 
-    url(r'^profile/', views.UserDetail.as_view(), name='user-profile'),
+    url(r'^users/', views.UserList.as_view(), name='user-list'),
+    url(r'^user/profile/', views.UserDetail.as_view(), name='user-profile'),
     url(r'^user/edit/', views.UserEdit.as_view(), name='user-update'),
 ]

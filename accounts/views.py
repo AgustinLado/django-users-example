@@ -22,6 +22,11 @@ class RegisterView(generic.CreateView):
     success_url = reverse_lazy('user-profile')
 
 
+class UserList(generic.ListView):
+    model = User
+    template_name = 'accounts/user_list.html'
+
+
 class UserDetail(LoginRequiredMixin, generic.DetailView):
     model = User
     template_name = 'accounts/user_profile.html'

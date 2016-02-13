@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block css %}
+    <style>
+        .table > tbody > tr:first-child > td {
+            border-top: 0;
+        }
+    </style>
+{% endblock %}
+
+{% block javascript %}
+    <script>
+        // Initialize Bootstrap's tooltips
+        $('[data-toggle="tooltip"]').tooltip();
+    </script>
+{% endblock %}
+
+{% block content %}
+    <h1>User list</h1>
+
+    <div class="row">
+        {# Column 1 #}
+        <div class="col-md-6">
+            {% for user in object_list %}
+                {% if forloop.counter0|divisibleby:2 %}
+                    {% include 'accounts/user_profile__panel.html' %}
+                {% endif %}
+            {% endfor %}
+        </div>
+
+        {# Column 2 #}
+        <div class="col-md-6">
+            {% for user in object_list %}
+                {% if not forloop.counter0|divisibleby:2 %}
+                    {% include 'accounts/user_profile__panel.html' %}
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}
