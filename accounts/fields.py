@@ -18,5 +18,5 @@ class PhoneField(fields.CharField):
     default_validators = [phone_regex_validator]
 
     def __init__(self, *args, **kwargs):
+        kwargs['max_length'] = 15
         super(PhoneField, self).__init__(*args, **kwargs)
-        self.max_length = 15

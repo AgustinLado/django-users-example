@@ -51,6 +51,13 @@
         {% endif %}
         {% if user == request.user %}
             <span class="pull-right">
+                {% if user.profile.published %}
+                    <span class="badge"
+                          data-toggle="tooltip"
+                          data-original-title="Profile is public">
+                        <i class="fa fa-eye fa-lg fa-fw"></i>
+                    </span>
+                {% endif %}
                 <a href="{% url 'user-edit' %}" type="button"
                    class="btn btn-sm btn-warning"
                    data-toggle="tooltip" data-original-title="Edit this user">

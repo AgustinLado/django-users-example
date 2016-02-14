@@ -28,6 +28,10 @@ class UserList(generic.ListView):
     model = User
     template_name = 'accounts/user_list.html'
 
+    def get_queryset(self):
+        """ Show only Users who have chosen to publish their profiles. """
+        return User.objects.filter(profile__published=True)
+
 
 class UserDetail(LoginRequiredMixin, generic.DetailView):
     model = User

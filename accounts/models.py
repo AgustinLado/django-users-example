@@ -8,6 +8,11 @@ from django_countries.fields import CountryField
 from accounts.fields import PhoneField
 
 
+class UserProfileQuerySet(models.QuerySet):
+    def get_published_profiles(self):
+        return self.filter(published=True)
+
+
 class UserProfile(models.Model):
     """
     Extends the default user model with extra information
@@ -20,6 +25,11 @@ class UserProfile(models.Model):
 
     # CharField with max_length=2 and choices corresponding to ISO 3166-1
     country = CountryField(blank=True, null=True)
+
+    # Whether to show the User's profile publicly or not
+    published = models.BooleanField(default=False)
+
+    objects = UserProfileQuerySet.as_manager()
 
     def gravatar(self, size=None):
         """ Get the User's Gravatar url based on his e-mail."""
