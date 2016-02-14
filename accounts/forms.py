@@ -12,7 +12,7 @@ class UserProfileForm(forms.ModelForm):
                             validators=[phone_regex_validator])
     country = LazyTypedChoiceField(choices=countries,
                                    widget=CountrySelectWidget)
-    published = forms.BooleanField()
+    published = forms.BooleanField(required=False)
 
     def __init__(self, *args, **kwargs):
         super(UserProfileForm, self).__init__(*args, **kwargs)
