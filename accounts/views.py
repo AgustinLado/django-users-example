@@ -2,8 +2,10 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.contrib.auth.views import login as django_login
+from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse_lazy
-from django.http import HttpResponseRedirect
+from django.http import (HttpResponseRedirect,
+                         HttpResponseNotAllowed)
 from django.views import generic
 
 from accounts import forms
@@ -44,4 +46,26 @@ class UserEdit(LoginRequiredMixin, generic.UpdateView):
 
     def get_object(self, queryset=None):
         """ Overriding get_object allows for calling the view without a PK. """
+        return self.request.user
+
+
+class UserDelete(LoginRequiredMixin, generic.DeleteView):
+    model = User
+    form_class = forms.UserProfileForm
+    template_name = 'base.html'
+    success_url = reverse_lazy('home')
+
+    def get(self, request, *args, **kwargs):
+        """
+        Block the get method (the View is posted from a Bootstrap modal).
+        """
+        return HttpResponseNotAllowed(permitted_methods=['POST'])
+
+    def get_object(self, queryset=None):
+        """
+        Overriding get_object allows for calling the view without a PK.
+        Disallow the deletion of a superuser.
+        """
+        if self.request.user.is_superuser:
+            raise PermissionDenied()
         return self.request.user

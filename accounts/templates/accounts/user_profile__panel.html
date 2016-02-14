@@ -51,17 +51,20 @@
         {% endif %}
         {% if user == request.user %}
             <span class="pull-right">
-                <a href="{% url 'user-update' %}" type="button"
+                <a href="{% url 'user-edit' %}" type="button"
                    class="btn btn-sm btn-warning"
-                   data-original-title="Edit this user"
-                   data-toggle="tooltip">
+                   data-toggle="tooltip" data-original-title="Edit this user">
                     <i class="glyphicon glyphicon-edit"></i>
                 </a>
-                <a type="button" class="btn btn-sm btn-danger"
-                   data-original-title="Remove this user"
-                   data-toggle="tooltip">
-                    <i class="glyphicon glyphicon-remove"></i>
-                </a>
+                <!-- This span works as a tooltip since an element
+                     cannot be both a modal and a tooltip -->
+                <span data-toggle="tooltip"
+                      data-original-title="Remove this user">
+                    <a type="button" class="btn btn-sm btn-danger"
+                       data-toggle="modal" data-target="#delete-user-modal">
+                        <i class="glyphicon glyphicon-remove"></i>
+                    </a>
+                </span>
             </span>
         {% endif %}
         <div class="clearfix"></div>

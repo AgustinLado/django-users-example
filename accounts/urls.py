@@ -15,5 +15,6 @@ urlpatterns = [
 
     url(r'^users/', views.UserList.as_view(), name='user-list'),
     url(r'^user/profile/', views.UserDetail.as_view(), name='user-profile'),
-    url(r'^user/edit/', views.UserEdit.as_view(), name='user-update'),
+    url(r'^user/edit/', views.UserEdit.as_view(), name='user-edit'),
+    url(r'^user/delete/', views.UserDelete.as_view(), name='user-delete'),
 ]
