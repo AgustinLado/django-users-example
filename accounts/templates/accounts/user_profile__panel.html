@@ -1,5 +1,3 @@
-{% load static from staticfiles %}
-
 {# Custom templatetags #}
 {% load gravatar %}
 
@@ -31,7 +29,7 @@
                         <td>Country</td>
                         <td>
                             {% if user.profile.country %}
-                                <img src="{% static user.profile.country.flag %}">
+                                <img src="{{ user.profile.country.flag }}">
                                 <small>{{ user.profile.country.name }}</small>
                             {% endif %}
                         </td>
